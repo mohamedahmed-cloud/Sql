@@ -314,3 +314,18 @@ drop trigger my_trigger3
 - This section is theoretical so the best way to make a revision on it that rewatch the video.
 - [rewatch](https://youtu.be/HXV3zeQKqGY?t=13333)
 
+---
+## Some Notes
+- To Select only city start and end with vowel characters
+```sql
+-- ^ means start
+-- $ means end
+select distinct city from STATION where city REGEXP '^[aeiou]' and city REGEXP '[aeiou]$';
+```
+
+- To find distance between two points and display only 4 decimal points
+```sql
+select round(sqrt(
+power (max(LAT_N)-min(LAT_N),2)+power(max(LONG_W)-min(LONG_W),2)),4)
+from station 
+```
