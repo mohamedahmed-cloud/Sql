@@ -143,6 +143,36 @@ select count (emp_id) from employee where sex ='f' and brithday>='1971-01-01';
 select AVG(salary) from employee;
 -- find average of employee salary how are men
 select AVG(salary) from employee where sex='m';
--- 
+-- Find Salary sum of employee 
+select sum(salary) from employee
+-- How many male and female in company  
+select count(sex) from employee;
+-- output 9
+select count(sex),sex from employee;
+-- output 9 m f
+select count(sex),sex from employee Group by sex;
+-- output 3 F
+--        6 M
 ```
+## Wild Cards
+- Grab data that match specific pattern 
+-  `%` Standard for any number of characters
+-  `-` one characters
+```sql
+-- find any client's who are an llc
+select * from client where client_name Like '%LLC'
+-- find any employee born on octobre
+select * from employee whwere birth_date like '____-10%';
+```
+## Union 
+- special sql operators 
+```sql 
+-- find all list of employee and branch names 
+select first_name from employee union 
+select branch_name from branch;
+```
+## joins
+- combine row from two or more tables in a single result.
+```sql
 
+```
