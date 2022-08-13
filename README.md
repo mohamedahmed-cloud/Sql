@@ -42,11 +42,11 @@ Insert INTO student (student_id,first_name) values (2,'kate')
 ---
 - some trick
 ```sql
+-- To Increase the integer from 1 to n column automatic 
 Student_id INT auto_increment
 PRIMARY KEY(student_id)
--- To Increase the integer from 1 to n column automatic 
-student_name VARCHAR(20) Default 'undecided'
 -- To give default value for this column 
+student_name VARCHAR(20) Default 'undecided'
 ```
 ---
 `=`     => Equal
@@ -78,7 +78,7 @@ update student set major ='undecided'
 ```
 - To Delete Table
 ```sql
--- To delete the row it's  name stduent_id=5
+-- To delete the row it's stduent_id=5
 Delete from student where student_id=5;
 
 -- To delete the row it's name is frist_name and is major 
@@ -119,7 +119,7 @@ select * from student_id order by student_id DESC limit 2;
 select * from student where major ='biology' 
 -- select all from table wehre major not called biology
 select * from student where major <> 'biology'
--- select from talbe if name in ('sara','aya','mohamed','f')
+-- select from table if name in ('sara','aya','mohamed','f')
 select * from student where name in ('sara','aya','mohamed','f')
 ```
 ## Company database
@@ -137,7 +137,7 @@ select distinct sex from employee
 -- Find number of employee
 slect count(emp_id) from employee;
 -- output 300
--- find number of femal employee borned after 1970
+-- find number of female employee borned after 1970
 select count (emp_id) from employee where sex ='f' and brithday>='1971-01-01';
 -- find average of employee salary 
 select AVG(salary) from employee;
@@ -149,7 +149,7 @@ select sum(salary) from employee
 select count(sex) from employee;
 -- output 9
 select count(sex),sex from employee;
--- output 9 m f
+-- output 9 m
 select count(sex),sex from employee Group by sex;
 -- output 3 F
 --        6 M
@@ -158,7 +158,7 @@ select count(sex),sex from employee Group by sex;
 ## Wild Cards
 - Grab data that match specific pattern 
 -  `%` Standard for any number of characters
--  `-` one characters
+-  `-` **Under score** standard for one characters
 ```sql
 -- find any client's who are an llc
 select * from client where client_name Like '%LLC'
@@ -187,7 +187,7 @@ join branch  on emp_id=mgr_id;
 select emp_id,first_name ,branch_name from employee 
 left join branch  on emp_id=mgr_id;
 
--- all the manager in in the manager table will appear 
+-- all the manager in the manager table will appear 
 -- right join 
 select emp_id,first_name ,branch_name from employee 
 right join branch  on emp_id=mgr_id;
@@ -220,7 +220,7 @@ select branch_id from branch where mgr_id =102
 - on delete set null
   - data related by this column will set to null
 - on delete cascade 
-  - data related by this column will be deleted also.
+  - data related by this column will be deleted.
 - we can use both of them when defining a relation key between tables
 
 ```sql
@@ -230,13 +230,13 @@ create table branch (
     -- means when you delet emp_id the mgr_id will set to null
     foreign key(mgr_id) references employee(emp_id) on delete set null
 );
--- delet emp_id =2
+-- delete emp_id =2
 delete from employee where emp_id=2;
 
-    -- on delete set cascade 
-    -- To define a foregin key when creatubg a branch table
-    --  means when you delete emp_id the mgr_id will deleted
 create table branch (
+    -- on delete set cascade 
+    -- To define a foregin key when creating a branch table
+    --  means when you delete emp_id the mgr_id will deleted
     foreign key(mgr_id) references employee(emp_id) on delete cascade
 );
 delete from employee where emp_id=2;
@@ -246,7 +246,7 @@ delete from employee where emp_id=2;
 - is basically a block of sql code which define a certain action that should happen when a certain operation get performed on the database
 - remember that `mysql -u root -p`
 - if you change any thing in the trigger you should update it from `mysql command line` by copy and paste the whole trigger after changing it.
-- `First Trigger`\
+- `First Trigger`
 ```sql 
 -- create table to show the trigger message
 CREATE TABLE trigger_test (
